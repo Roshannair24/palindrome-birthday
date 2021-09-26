@@ -182,3 +182,60 @@ function findNextPalindromeDate(dateobj) {
   return [ctr, nextDate];
 }
 
+let dateInputRef = document.querySelector("#bday-input");
+
+let showbtnref = document.querySelector("#show-btn");
+let resultref=document.querySelector("#result");
+
+showbtnref.addEventListener("click", clickhandler);
+
+function clickhandler(e) {
+  console.log("clciked");
+
+  console.log(e);
+
+  console.log(e.value);
+
+  console.log(dateInputRef.value);
+
+  let bdaystr = dateInputRef.value;
+
+  if (bdaystr !== "") {
+    var listOfDate = bdaystr.split("-");
+
+    console.log(listOfDate);
+
+    let dateobj = {
+      day: Number(listOfDate[2]),
+      month: Number(listOfDate[1]),
+      year: Number(listOfDate[0]),
+    };
+
+    console.log(dateobj);
+
+
+
+
+    var isPalindrome=tocheckPalindromeforAlldateformats(dateobj);
+
+
+    console.log(isPalindrome);
+
+
+if(isPalindrome){
+    resultref.innerText="Yay! your bday is a palindrome";
+
+}else{
+   
+    
+var [ctr,nextDate]=findNextPalindromeDate(dateobj)
+
+
+    resultref.innerText=`the next Palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year},you missed it by ${ctr} days.`;
+
+}
+
+
+
+  }
+}
