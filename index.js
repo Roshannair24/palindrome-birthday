@@ -84,7 +84,6 @@ function getAllDateFormats(date) {
   return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd];
 }
 
-
 function tocheckPalindromeforAlldateformats(dateobj) {
   let dateFormatArr = getAllDateFormats(dateobj);
 
@@ -92,10 +91,94 @@ function tocheckPalindromeforAlldateformats(dateobj) {
 
   for (var i = 0; i < dateFormatArr.length; i++) {
     if (checkForPalindrome(dateFormatArr[i])) {
-        flag = true;
-        break;
+      flag = true;
+      break;
     }
   }
 
   return flag;
 }
+
+function isleapyear(year) {
+  if (year % 400 === 0) {
+    return true;
+  }
+  if (year % 100 === 0) {
+    return false;
+  }
+
+  if (year % 4 === 0) {
+    return true;
+  }
+
+  return false;
+}
+
+function incrementdate(dateobj) {
+  let lday = dateobj.day + 1;
+  let lmonth = dateobj.month;
+  let lyear = dateobj.year;
+
+  let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  if (lmonth === 2) {
+    if (isleapyear(lyear)) {
+      if (lday > 29) {
+        lday = 1;
+
+        lmonth = lmonth + 1;
+      }
+    } else {
+      if (lday > 28) {
+        lday = 1;
+
+        lmonth = lmonth + 1;
+      }
+    }
+  } else {
+    if (lday > daysInMonth[lmonth - 1]) {
+      lday = 1;
+
+      lmonth = lmonth + 1;
+    }
+  }
+
+  if (lmonth > 12) {
+    lday = 1;
+
+    lmonth = 1;
+
+    lyear = lyear + 1;
+  }
+
+  return {
+    day: lday,
+    month: lmonth,
+    year: lyear,
+  };
+}
+
+function findNextPalindromeDate(dateobj) {
+  // If the current date is not a palindrome, find the next palindrome date
+
+  let nextDate = incrementdate(dateobj);
+
+  let ctr = 0;
+
+  while (1) {
+    ctr = ctr + 1;
+
+    var isPalindrome = tocheckPalindromeforAlldateformats(nextDate);
+
+    if (isPalindrome) {
+      break;
+    }
+
+    //recursive function?
+
+    nextDate = incrementdate(nextDate);
+  }
+
+  return [ctr, nextDate];
+}
+
