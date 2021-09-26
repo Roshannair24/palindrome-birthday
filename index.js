@@ -25,8 +25,6 @@ function checkForPalindrome(str) {
   }
 }
 
-let mastertempdate = { day: 14, month: 9, year: 2020 };
-
 function convertDateFromNumberToString(date) {
   let tempdate = { day: "", month: "", year: "" };
 
@@ -57,41 +55,47 @@ function convertDateFromNumberToString(date) {
   return tempdate;
 }
 
-function returnVariationsAsArrray(date) {
-  let arr = [];
-
-  let str = "";
+function getAllDateFormats(date) {
+  let datestr = convertDateFromNumberToString(date);
 
   // DD-MM-YYYY
 
-  let ddmmyyyy = date.day + date.month + date.year;
-
-  arr.push(ddmmyyyy);
+  let ddmmyyyy = datestr.day + datestr.month + datestr.year;
 
   // MM-DD-YYYY
 
-  let mmddyyyy = date.month + date.day + date.year;
-
-  arr.push(mmddyyyy);
+  let mmddyyyy = datestr.month + datestr.day + datestr.year;
 
   // YYYY-MM-DD
 
-  let yyyymmdd = date.year + date.month + date.day;
-
-  arr.push(yyyymmdd);
-
-  console.log(arr);
+  let yyyymmdd = datestr.year + datestr.month + datestr.day;
 
   // DD-MM-YY
 
-  let ddmmyy = date.day + date.month + date.year.slice(-2);
-
-  arr.push(ddmmyy);
+  let ddmmyy = datestr.day + datestr.month + datestr.year.slice(-2);
 
   // MM-DD-YY
-  let mmddyy = date.month + date.day + date.year.slice(-2);
-
-  arr.push(mmddyy);
+  let mmddyy = datestr.month + datestr.day + datestr.year.slice(-2);
 
   // YY-MM-DD
+
+  let yymmdd = datestr.year.slice(-2) + datestr.month + datestr.day;
+
+  return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd];
+}
+
+
+function tocheckPalindromeforAlldateformats(dateobj) {
+  let dateFormatArr = getAllDateFormats(dateobj);
+
+  var flag = false;
+
+  for (var i = 0; i < dateFormatArr.length; i++) {
+    if (checkForPalindrome(dateFormatArr[i])) {
+        flag = true;
+        break;
+    }
+  }
+
+  return flag;
 }
