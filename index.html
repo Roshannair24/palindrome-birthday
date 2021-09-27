@@ -5,16 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Palindrome</title>
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <h1>Palindrome birthday</h1>
+    <div class="heading-holder">
+      <h1>Palindrome birthday</h1>
+    </div>
 
-    <input type="date" id="bday-input" />
+    <div class="outerholder">
+      <div class="inputholder">
+        <input class="date-input" type="date" id="bday-input" />
+      </div>
 
-    <button id="show-btn">Show</button>
-    <p id="result"></p>
+      <div class="buttonholder">
+        <button class="showdatebtn button-primary" id="show-btn">Show</button>
 
+        <div class="gifholder">
+          <img
+            class="loader-gif"
+            src="images/loader.gif"
+            alt="loader-gif"
+            srcset=""
+          />
+        </div>
 
+        <p class="outputpara" id="result"></p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-header">
+        <p>Lets have a chat.</p>
+        <p>© | 2021 | RoshFolio</p>
+      </div>
+      <ul class="social-links list-non-bullet">
+        <li class="list-item-inline">
+          <a class="link" href="https://github.com/Roshannair24"
+            ><i class="bx bxl-github"></i
+          ></a>
+        </li>
+        <li class="list-item-inline">
+          <a class="link" href="https://twitter.com/freedom24994"
+            ><i class="bx bxl-twitter"></i
+          ></a>
+        </li>
+
+        <li class="list-item-inline">
+          <a
+            class="link"
+            href="https://www.linkedin.com/in/roshan-nair-15a93810a/"
+          >
+            <i class="bx bxl-linkedin"></i
+          ></a>
+        </li>
+
+        <li class="list-item-inline">
+          <a class="link" href="https://www.instagram.com/freedom24car/">
+            <i class="bx bxl-instagram"></i>
+          </a>
+        </li>
+      </ul>
+    </footer>
 
     <script src="index.js"></script>
   </body>

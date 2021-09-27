@@ -185,12 +185,13 @@ function findNextPalindromeDate(dateobj) {
 let dateInputRef = document.querySelector("#bday-input");
 
 let showbtnref = document.querySelector("#show-btn");
-let resultref=document.querySelector("#result");
+let resultref = document.querySelector("#result");
 
 showbtnref.addEventListener("click", clickhandler);
 
 function clickhandler(e) {
   console.log("clciked");
+  resultref.innerText="";
 
   console.log(e);
 
@@ -213,29 +214,24 @@ function clickhandler(e) {
 
     console.log(dateobj);
 
-
-
-
-    var isPalindrome=tocheckPalindromeforAlldateformats(dateobj);
-
+    var isPalindrome = tocheckPalindromeforAlldateformats(dateobj);
 
     console.log(isPalindrome);
 
+    if (isPalindrome) {
+      resultref.innerText = "Yay! your bday is a palindrome";
+    } else {
+      document.querySelector(".loader-gif").style.display = "block";
 
-if(isPalindrome){
-    resultref.innerText="Yay! your bday is a palindrome";
+      setTimeout(function () {
+        document.querySelector(".loader-gif").style.display = "none";
 
-}else{
-   
-    
-var [ctr,nextDate]=findNextPalindromeDate(dateobj)
+        var [ctr, nextDate] = findNextPalindromeDate(dateobj);
 
-
-    resultref.innerText=`the next Palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year},you missed it by ${ctr} days.`;
-
-}
-
+        resultref.innerText = `The next Palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${ctr} days.`;
+      }, 2000);
 
 
+    }
   }
 }
