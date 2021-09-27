@@ -126,6 +126,12 @@ font-size: larger;
 footer {
     /* background-color: var(--darkbl); */
         background-color: var(--greenb);
+
+
+      
+        position: absolute;
+    
+
 text-align: center;
 margin-top: 10rem;
     border-radius: 0.8rem;
